@@ -1,0 +1,81 @@
+<h1><strong>Add a new artist</strong></h1>
+<p>
+  An artist is can be a group of people or a solo act. When an artist makes a
+  song with some other artist you can add them as a new artist together.
+</p>
+<div class="row">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          #name="ngModel"
+          [(ngModel)]="artist.name"
+          name="name"
+          id="name"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+          Name is required
+        </div>
+      </div>
+      <br />
+      <div class="form-group">
+        <label for="country">Country</label>
+        <div class="input-group mb-3">
+          <input
+            #country="ngModel"
+            [(ngModel)]="artist.country"
+            name="country"
+            id="country"
+            type="text"
+            class="form-control"
+            required
+          />
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="country.touched && country.invalid"
+        >
+          Country is required
+        </div>
+      </div>
+      <br />
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input
+          #imageUrl="ngModel"
+          [(ngModel)]="artist.imageUrl"
+          name="imageUrl"
+          id="imageUrl"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="imageUrl.touched && imageUrl.invalid"
+        >
+          Image URL is required
+        </div>
+      </div>
+      <br />
+      <button class="btn btn-primary lilpadding">Save</button>
+      <button
+        *ngIf="id"
+        type="button"
+        (click)="delete()"
+        class="btn btn-danger lilpadding"
+      >
+        Delete
+      </button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <div style="width: 35rem">
+      <artist-card [artist]="artist" [show-actions]="false"> </artist-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div *ngIf="artist.name" class="card">
+  <img
+    [src]="artist.imageUrl"
+    class="card-img-top"
+    *ngIf="artist.imageUrl"
+    alt="{{ artist.name }}"
+  />
+  <div class="card-body">
+    <h1 class="card-title">
+      <strong>{{ artist.name }}</strong>
+    </h1>
+    <p class="card-text">
+      {{ artist.country }}
+    </p>
+  </div>
+  <div class="card-footer" *ngIf="showActions"></div>
+</div>
