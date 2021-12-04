@@ -60,8 +60,10 @@ export class ArtistComponent implements OnInit, OnDestroy {
 
   filter(query: string) {
     this.filteredArtists = query
-      ? this.artists.filter((p) =>
-          p.name.toLowerCase().includes(query.toLowerCase())
+      ? this.artists.filter(
+          (p) =>
+            p.name.toLowerCase().includes(query.toLowerCase()) ||
+            p.country.toLowerCase().includes(query.toLowerCase())
         )
       : this.artists;
     this.dataSource = new MatTableDataSource<Artist>(this.filteredArtists);

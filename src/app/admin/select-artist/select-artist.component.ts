@@ -16,11 +16,11 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { Artist } from 'src/app/models/artist';
 
 @Component({
-  selector: 'admin-artist',
-  templateUrl: './admin-artist.component.html',
-  styleUrls: ['./admin-artist.component.css'],
+  selector: 'select-artist',
+  templateUrl: './select-artist.component.html',
+  styleUrls: ['./select-artist.component.css'],
 })
-export class AdminArtistComponent implements OnInit, OnDestroy {
+export class SelectArtistComponent implements OnInit, OnDestroy {
   artists: Artist[];
   filteredArtists: Artist[];
   subscription: Subscription;

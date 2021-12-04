@@ -1,1 +1,64 @@
-<p>music-form works!</p>
+<h1 *ngIf="!mid">
+  <strong>Add a new song from {{ music.artist }}</strong>
+</h1>
+<h1 *ngIf="mid">
+  <strong>Edit or delete existing song from {{ music.artist }}</strong>
+</h1>
+<p>A song is always correlated to an artist.</p>
+<div class="row">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      <div class="form-group">
+        <label for="name">Songname</label>
+        <input
+          #songname="ngModel"
+          [(ngModel)]="music.songname"
+          name="songname"
+          id="songname"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="songname.touched && songname.invalid"
+        >
+          Songname is required
+        </div>
+      </div>
+      <br />
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <div class="input-group mb-3">
+          <input
+            #genre="ngModel"
+            [(ngModel)]="music.genre"
+            name="genre"
+            id="genre"
+            type="text"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="alert alert-danger" *ngIf="genre.touched && genre.invalid">
+          Genre is required
+        </div>
+      </div>
+      <br />
+      <button class="btn btn-primary lilpadding">Save</button>
+      <button
+        *ngIf="mid"
+        type="button"
+        (click)="delete()"
+        class="btn btn-danger lilpadding"
+      >
+        Delete
+      </button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <div style="width: 35rem">
+      <music-card [music]="music" [show-actions]="false"> </music-card>
+    </div>
+  </div>
+</div>

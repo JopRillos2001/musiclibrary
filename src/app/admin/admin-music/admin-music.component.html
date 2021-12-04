@@ -1,1 +1,80 @@
-<p>admin-music works!</p>
+<h1><strong>Manage Music</strong></h1>
+<p>
+  <a routerLink="/admin/music/new" class="btn btn-primary">Add New Song</a>
+</p>
+<p>
+  <input
+    #query
+    (keyup)="filter(query.value)"
+    type="text"
+    class="form-control"
+    placeholder="Search..."
+  />
+</p>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- Name Column -->
+    <ng-container matColumnDef="songname">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by songname"
+      >
+        Songname
+      </th>
+      <td mat-cell *matCellDef="let m of filteredMusic">{{ m.songname }}</td>
+    </ng-container>
+
+    <!-- Artist Column -->
+    <ng-container matColumnDef="artist">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by artist"
+      >
+        Artist
+      </th>
+      <td mat-cell *matCellDef="let m of filteredMusic">
+        {{ m.artist }}
+      </td>
+    </ng-container>
+
+    <!-- Genre Column -->
+    <ng-container matColumnDef="genre">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by genre"
+      >
+        Genre
+      </th>
+      <td mat-cell *matCellDef="let m of filteredMusic">
+        {{ m.genre }}
+      </td>
+    </ng-container>
+
+    <!-- Edit Column -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let m of filteredMusic">
+        <a [routerLink]="['/admin/artists/' + m.artistkey + '/music/' + m.key]"
+          >Edit</a
+        >
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20, 50, 100]"
+    showFirstLastButtons
+    aria-label="Select page of music"
+  >
+  </mat-paginator>
+</div>

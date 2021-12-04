@@ -1,4 +1,4 @@
-<h1><strong>Manage Artists</strong></h1>
+<h1><strong>Select Artist</strong></h1>
 <p>
   <a routerLink="/admin/artists/new" class="btn btn-primary">Add New Artist</a>
 </p>
@@ -54,7 +54,7 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let a of filteredArtists">
-        <a [routerLink]="['/admin/artists/', a.key]">Edit</a>
+        <a [routerLink]="['/admin/artists/' + a.key + '/music/new']">Select</a>
       </td>
     </ng-container>
 

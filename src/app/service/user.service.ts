@@ -12,6 +12,17 @@ import { AppUser } from '../models/app-user';
 })
 export class UserService {
   constructor(private db: AngularFirestore) {}
+
+  update(user: firebase.User) {
+    this.db
+      .doc('/users/' + user.uid)
+      .update({
+        name: user.displayName,
+        email: user.email,
+      })
+      .then(() => console.log('user saved successfully'))
+      .catch((reason: any) => this.save(user));
+  }
   save(user: firebase.User) {
     this.db
       .doc('/users/' + user.uid)
@@ -19,6 +30,7 @@ export class UserService {
         {
           name: user.displayName,
           email: user.email,
+          isAdmin: false,
         },
         { merge: true }
       )
@@ -28,5 +40,19 @@ export class UserService {
 
   get(uid: string): Observable<AppUser> {
     return this.db.doc('/users/' + uid).valueChanges() as Observable<AppUser>;
+  }
+
+  getAll(): any {
+    return this.db.collection('/users');
+  }
+
+  updateRole(useruid: string, value: boolean) {
+    this.db
+      .doc('/users/' + useruid)
+      .update({
+        isAdmin: value,
+      })
+      .then(() => console.log('user updated successfully'))
+      .catch((reason: any) => console.log('user update failed:', reason));
   }
 }

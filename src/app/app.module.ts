@@ -31,6 +31,11 @@ import { AdminAuthGuardService } from './service/admin-auth-guard.service';
 import { MusicFormComponent } from './admin/music-form/music-form.component';
 import { ArtistFormComponent } from './admin/artist-form/artist-form.component';
 import { ArtistCardComponent } from './partial/artist-card/artist-card.component';
+import { AdminUserComponent } from './admin/admin-user/admin-user.component';
+import { MusicService } from './service/music.service';
+import { ArtistService } from './service/artist.service';
+import { MusicCardComponent } from './partial/music-card/music-card.component';
+import { SelectArtistComponent } from './admin/select-artist/select-artist.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +51,9 @@ import { ArtistCardComponent } from './partial/artist-card/artist-card.component
     MusicFormComponent,
     ArtistFormComponent,
     ArtistCardComponent,
+    AdminUserComponent,
+    MusicCardComponent,
+    SelectArtistComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,8 +77,28 @@ import { ArtistCardComponent } from './partial/artist-card/artist-card.component
         canActivate: [AuthGuardService],
       },
       {
+        path: 'admin/music/new',
+        component: SelectArtistComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService],
+      },
+      {
+        path: 'admin/music/:id',
+        component: MusicFormComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService],
+      },
+      {
         path: 'admin/music',
         component: AdminMusicComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService],
+      },
+      {
+        path: 'admin/artists/:id/music/new',
+        component: MusicFormComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService],
+      },
+      {
+        path: 'admin/artists/:id/music/:mid',
+        component: MusicFormComponent,
         canActivate: [AuthGuardService, AdminAuthGuardService],
       },
       {
@@ -88,6 +116,11 @@ import { ArtistCardComponent } from './partial/artist-card/artist-card.component
         component: AdminArtistComponent,
         canActivate: [AuthGuardService, AdminAuthGuardService],
       },
+      {
+        path: 'admin/users',
+        component: AdminUserComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService],
+      },
     ]),
     BrowserAnimationsModule,
   ],
@@ -96,6 +129,8 @@ import { ArtistCardComponent } from './partial/artist-card/artist-card.component
     UserService,
     AuthGuardService,
     AdminAuthGuardService,
+    MusicService,
+    ArtistService,
   ],
   bootstrap: [AppComponent],
 })

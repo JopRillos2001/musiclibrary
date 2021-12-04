@@ -1,0 +1,11 @@
+<div *ngIf="music.songname" class="card">
+  <div class="card-body">
+    <h1 class="card-title">
+      <strong>{{ music.songname }}</strong>
+    </h1>
+    <p class="card-text">
+      {{ music.genre }}
+    </p>
+  </div>
+  <div class="card-footer" *ngIf="showActions"></div>
+</div>

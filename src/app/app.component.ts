@@ -17,7 +17,7 @@ export class AppComponent {
   ) {
     auth.user$.subscribe((user) => {
       if (!user) return;
-      userService.save(user);
+      userService.update(user);
       let returnUrl = localStorage.getItem('returnUrl');
       if (!returnUrl) return;
       localStorage.removeItem('returnUrl');

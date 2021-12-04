@@ -1,6 +1,7 @@
 export interface Music {
   key: string;
-  name: string;
-  category: string;
-  songUrl: string;
+  songname: string;
+  genre: string;
+  artist: string;
+  artistkey: string;
 }
