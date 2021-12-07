@@ -21,6 +21,12 @@ export class MusicService {
     return this.db.collectionGroup('music');
   }
 
+  getAllById(artistId: string): any {
+    return this.db.collectionGroup('music', (ref) =>
+      ref.where('artistkey', '==', artistId)
+    );
+  }
+
   getOne(artistId: string, musicId: string): any {
     return this.db.doc('/artists/' + artistId + '/music/' + musicId);
   }

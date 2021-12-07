@@ -1,9 +1,11 @@
-<h1 *ngIf="!mid">
-  <strong>Add a new song from {{ music.artist }}</strong>
-</h1>
-<h1 *ngIf="mid">
-  <strong>Edit or delete existing song from {{ music.artist }}</strong>
-</h1>
+<div class="mainimgdiv">
+  <h1 *ngIf="!mid">
+    <strong>Add a new song from {{ artistname }}</strong>
+  </h1>
+  <h1 *ngIf="mid">
+    <strong>Edit or delete existing song from {{ artistname }}</strong>
+  </h1>
+</div>
 <p>A song is always correlated to an artist.</p>
 <div class="row">
   <div class="col-md-6">

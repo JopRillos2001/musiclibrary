@@ -25,7 +25,7 @@ export class ArtistComponent implements OnInit, OnDestroy {
   filteredArtists: Artist[];
   subscription: Subscription;
 
-  displayedColumns: string[] = ['img', 'name', 'country'];
+  displayedColumns: string[] = ['img', 'name', 'country', 'music'];
   dataSource: MatTableDataSource<Artist>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

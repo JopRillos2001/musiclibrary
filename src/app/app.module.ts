@@ -36,6 +36,7 @@ import { MusicService } from './service/music.service';
 import { ArtistService } from './service/artist.service';
 import { MusicCardComponent } from './partial/music-card/music-card.component';
 import { SelectArtistComponent } from './admin/select-artist/select-artist.component';
+import { ArtistdetailsComponent } from './main/artistdetails/artistdetails.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SelectArtistComponent } from './admin/select-artist/select-artist.compo
     AdminUserComponent,
     MusicCardComponent,
     SelectArtistComponent,
+    ArtistdetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,7 @@ import { SelectArtistComponent } from './admin/select-artist/select-artist.compo
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'artists', component: ArtistComponent },
+      { path: 'artists/:id/music', component: ArtistdetailsComponent },
       { path: 'music', component: MusicComponent },
       { path: 'login', component: LoginComponent },
       {

@@ -10,6 +10,7 @@ import { AppUser } from '../models/app-user';
 })
 export class BsNavbarComponent implements OnInit {
   appUser: AppUser;
+  public isCollapsed = true;
   constructor(public auth: AuthService) {}
 
   async ngOnInit() {

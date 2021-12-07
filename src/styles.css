@@ -35,6 +35,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #ffd800;
 }
 
 table {
@@ -50,10 +51,41 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.bg-purple {
+  background-color: #57007f;
+}
+
+.bg-yellow {
+  background-color: #ffd800;
+}
+
 .listimg {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
   margin: 5px;
+}
+.mainimgdiv {
+  text-align: center;
+}
+
+.mainimg {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 5px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.homeimg {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 5px;
+  text-align: center;
+  margin-bottom: 20px;
 }
