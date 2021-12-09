@@ -20,7 +20,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { Music } from 'src/app/models/music';
 import { Artist } from 'src/app/models/artist';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'artistdetails',
@@ -32,10 +32,10 @@ export class ArtistdetailsComponent implements OnInit, OnDestroy {
   filteredMusic: Music[];
   subscription: Subscription;
   id: string;
-  artistname: string;
-  artistimg: string;
+  artistname: Observable<string>;
+  artistimg: Observable<string>;
 
-  displayedColumns: string[] = ['songname', 'genre'];
+  displayedColumns: string[] = ['songname', 'genre', 'playlist'];
   dataSource: MatTableDataSource<Music>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -48,7 +48,18 @@ export class ArtistdetailsComponent implements OnInit, OnDestroy {
   ) {}
   async ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.getSelectedArtist();
+
+    if (this.id) {
+      this.artistname = this.artistService
+        .getOne(this.id)
+        .valueChanges()
+        .pipe(map((artist) => artist.name));
+      this.artistimg = this.artistService
+        .getOne(this.id)
+        .valueChanges()
+        .pipe(map((artist) => artist.imageUrl));
+    }
+
     this.subscription = this.musicService
       .getAllById(this.id)
       .valueChanges({
@@ -86,19 +97,7 @@ export class ArtistdetailsComponent implements OnInit, OnDestroy {
     this.initPaginatorAndSort();
   }
 
-  getSelectedArtist() {
-    if (this.id) {
-      this.artistService
-        .getOne(this.id)
-        .valueChanges()
-        .pipe(take(1))
-        .subscribe(
-          (p: any) => (
-            (this.artistname = p.name), (this.artistimg = p.imageUrl)
-          )
-        );
-    }
-  }
+  getSelectedArtist() {}
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

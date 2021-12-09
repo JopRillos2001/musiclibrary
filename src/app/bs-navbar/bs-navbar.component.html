@@ -22,14 +22,24 @@
     >
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/artists"> Artists </a>
+          <a
+            class="nav-link"
+            routerLink="/artists"
+            (click)="isCollapsed = true"
+          >
+            Catalog
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/music"> Music </a>
+          <a class="nav-link" routerLink="/music" (click)="isCollapsed = true">
+            Music
+          </a>
         </li>
         <ng-template #anonymousUser>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Login</a>
+            <a class="nav-link" routerLink="/login" (click)="isCollapsed = true"
+              >Login</a
+            >
           </li>
         </ng-template>
         <li
@@ -51,21 +61,35 @@
             class="dropdown-menu bg-yellow"
             aria-labelledby="dropdown01"
           >
-            <a class="dropdown-item" routerLink="/my/collection"
+            <a
+              class="dropdown-item"
+              routerLink="/my/collection"
+              (click)="isCollapsed = true"
               >My Collection</a
             >
             <ng-container *ngIf="appUser.isAdmin">
-              <a class="dropdown-item" routerLink="/admin/artists"
+              <a
+                class="dropdown-item"
+                routerLink="/admin/artists"
+                (click)="isCollapsed = true"
                 >Manage Artists</a
               >
-              <a class="dropdown-item" routerLink="/admin/music"
+              <a
+                class="dropdown-item"
+                routerLink="/admin/music"
+                (click)="isCollapsed = true"
                 >Manage Music</a
               >
-              <a class="dropdown-item" routerLink="/admin/users"
+              <a
+                class="dropdown-item"
+                routerLink="/admin/users"
+                (click)="isCollapsed = true"
                 >Manage Users</a
               >
             </ng-container>
-            <a class="dropdown-item" (click)="logout()">Log Out</a>
+            <a class="dropdown-item" (click)="logout()" routerLink="/login"
+              >Log Out</a
+            >
           </div>
         </li>
       </ul>

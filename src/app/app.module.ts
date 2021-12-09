@@ -37,6 +37,7 @@ import { ArtistService } from './service/artist.service';
 import { MusicCardComponent } from './partial/music-card/music-card.component';
 import { SelectArtistComponent } from './admin/select-artist/select-artist.component';
 import { ArtistdetailsComponent } from './main/artistdetails/artistdetails.component';
+import { MusicdetailsComponent } from './main/musicdetails/musicdetails.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ArtistdetailsComponent } from './main/artistdetails/artistdetails.compo
     MusicCardComponent,
     SelectArtistComponent,
     ArtistdetailsComponent,
+    MusicdetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,63 +70,68 @@ import { ArtistdetailsComponent } from './main/artistdetails/artistdetails.compo
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'artists', component: ArtistComponent },
-      { path: 'artists/:id/music', component: ArtistdetailsComponent },
-      { path: 'music', component: MusicComponent },
-      { path: 'login', component: LoginComponent },
-      {
-        path: 'my/collection',
-        component: MycollectionComponent,
-        canActivate: [AuthGuardService],
-      },
-      {
-        path: 'admin/music/new',
-        component: SelectArtistComponent,
-        canActivate: [AuthGuardService, AdminAuthGuardService],
-      },
-      {
-        path: 'admin/music/:id',
-        component: MusicFormComponent,
-        canActivate: [AuthGuardService, AdminAuthGuardService],
-      },
-      {
-        path: 'admin/music',
-        component: AdminMusicComponent,
-        canActivate: [AuthGuardService, AdminAuthGuardService],
-      },
-      {
-        path: 'admin/artists/:id/music/new',
-        component: MusicFormComponent,
-        canActivate: [AuthGuardService, AdminAuthGuardService],
-      },
-      {
-        path: 'admin/artists/:id/music/:mid',
-        component: MusicFormComponent,
-        canActivate: [AuthGuardService, AdminAuthGuardService],
-      },
-      {
-        path: 'admin/artists/new',
-        component: ArtistFormComponent,
-        canActivate: [AuthGuardService, AdminAuthGuardService],
-      },
-      {
-        path: 'admin/artists/:id',
-        component: ArtistFormComponent,
-        canActivate: [AuthGuardService, AdminAuthGuardService],
-      },
-      {
-        path: 'admin/artists',
-        component: AdminArtistComponent,
-        canActivate: [AuthGuardService, AdminAuthGuardService],
-      },
-      {
-        path: 'admin/users',
-        component: AdminUserComponent,
-        canActivate: [AuthGuardService, AdminAuthGuardService],
-      },
-    ]),
+    RouterModule.forRoot(
+      [
+        { path: '', component: HomeComponent },
+        { path: 'artists', component: ArtistComponent },
+        { path: 'artists/:id/music', component: ArtistdetailsComponent },
+        { path: 'artists/:id/music/:mid', component: MusicdetailsComponent },
+        { path: 'music', component: MusicComponent },
+        { path: 'music/:id/:mid', component: MusicdetailsComponent },
+        { path: 'login', component: LoginComponent },
+        {
+          path: 'my/collection',
+          component: MycollectionComponent,
+          canActivate: [AuthGuardService],
+        },
+        {
+          path: 'admin/music/new',
+          component: SelectArtistComponent,
+          canActivate: [AuthGuardService, AdminAuthGuardService],
+        },
+        {
+          path: 'admin/music/:id',
+          component: MusicFormComponent,
+          canActivate: [AuthGuardService, AdminAuthGuardService],
+        },
+        {
+          path: 'admin/music',
+          component: AdminMusicComponent,
+          canActivate: [AuthGuardService, AdminAuthGuardService],
+        },
+        {
+          path: 'admin/artists/:id/music/new',
+          component: MusicFormComponent,
+          canActivate: [AuthGuardService, AdminAuthGuardService],
+        },
+        {
+          path: 'admin/artists/:id/music/:mid',
+          component: MusicFormComponent,
+          canActivate: [AuthGuardService, AdminAuthGuardService],
+        },
+        {
+          path: 'admin/artists/new',
+          component: ArtistFormComponent,
+          canActivate: [AuthGuardService, AdminAuthGuardService],
+        },
+        {
+          path: 'admin/artists/:id',
+          component: ArtistFormComponent,
+          canActivate: [AuthGuardService, AdminAuthGuardService],
+        },
+        {
+          path: 'admin/artists',
+          component: AdminArtistComponent,
+          canActivate: [AuthGuardService, AdminAuthGuardService],
+        },
+        {
+          path: 'admin/users',
+          component: AdminUserComponent,
+          canActivate: [AuthGuardService, AdminAuthGuardService],
+        },
+      ],
+      { scrollPositionRestoration: 'enabled' }
+    ),
     BrowserAnimationsModule,
   ],
   providers: [

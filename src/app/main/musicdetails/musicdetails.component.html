@@ -1,0 +1,33 @@
+<div class="mainimgdiv">
+  <h1>
+    <strong>{{ songname | async }}</strong>
+  </h1>
+  <h2>
+    {{ artist | async }}
+  </h2>
+  <h3>
+    {{ genre | async }}
+  </h3>
+  <ng-container *ngIf="songname | async as songname$">
+    <ng-container *ngIf="artist | async as artist$">
+      <ng-container *ngIf="genre | async as genre$">
+        <button
+          *ngIf="!(inplaylist | async)"
+          class="btn btn-success"
+          (click)="
+            addToPlaylist(songkey, songname$, genre$, artist$, artistkey)
+          "
+        >
+          Add to collection
+        </button>
+        <button
+          *ngIf="inplaylist | async"
+          class="btn btn-primary"
+          routerLink="/my/collection"
+        >
+          View collection
+        </button>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>

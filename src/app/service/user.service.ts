@@ -15,7 +15,7 @@ export class UserService {
 
   update(user: firebase.User) {
     this.db
-      .doc('/users/' + user.uid)
+      .doc('/users/' + user.email)
       .update({
         name: user.displayName,
         email: user.email,
@@ -25,7 +25,7 @@ export class UserService {
   }
   save(user: firebase.User) {
     this.db
-      .doc('/users/' + user.uid)
+      .doc('/users/' + user.email)
       .set(
         {
           name: user.displayName,
@@ -38,17 +38,17 @@ export class UserService {
       .catch((reason: any) => console.log('user save failed:', reason));
   }
 
-  get(uid: string): Observable<AppUser> {
-    return this.db.doc('/users/' + uid).valueChanges() as Observable<AppUser>;
+  get(email: string): Observable<AppUser> {
+    return this.db.doc('/users/' + email).valueChanges() as Observable<AppUser>;
   }
 
   getAll(): any {
     return this.db.collection('/users');
   }
 
-  updateRole(useruid: string, value: boolean) {
+  updateRole(userkey: string, value: boolean) {
     this.db
-      .doc('/users/' + useruid)
+      .doc('/users/' + userkey)
       .update({
         isAdmin: value,
       })

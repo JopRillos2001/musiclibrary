@@ -1,8 +1,10 @@
-export interface Music {
+export interface Playlist {
   key: string;
   songname: string;
   genre: string;
   artist: string;
   artistkey: string;
-  inplaylist: any;
+  userkey: string;
+  songkey: string;
+  username: string;
 }

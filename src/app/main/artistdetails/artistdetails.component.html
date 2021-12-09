@@ -1,9 +1,9 @@
 <div class="mainimgdiv">
   <h1>
-    <strong>All Music from {{ artistname }}</strong>
+    <strong>All Music from {{ artistname | async }}</strong>
   </h1>
 
-  <img [src]="artistimg" class="mainimg" />
+  <img src="{{ artistimg | async }}" class="mainimg" />
 </div>
 <p>
   <input
@@ -42,6 +42,16 @@
       </th>
       <td mat-cell *matCellDef="let m of filteredMusic">
         {{ m.genre }}
+      </td>
+    </ng-container>
+
+    <!-- InPlaylist Column -->
+    <ng-container matColumnDef="playlist">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let m of filteredMusic">
+        <a [routerLink]="['/artists/' + m.artistkey + '/music/' + m.key]"
+          >Details</a
+        >
       </td>
     </ng-container>
 
