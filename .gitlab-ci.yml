@@ -1,0 +1,11 @@
+//.gitlab-ci.yml
+
+image: node:latest
+stages:
+  - build
+  - test
+  - deploy
+
+  before_script:
+  - npm install
+  - npm --prefix ./functions install

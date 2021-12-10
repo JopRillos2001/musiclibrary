@@ -98,8 +98,8 @@ export class MusicdetailsComponent implements OnInit, OnDestroy {
     key: string,
     songname: string,
     genre: string,
-    artistkey: string,
-    artist: string
+    artist: string,
+    artistkey: string
   ) {
     this.playlistService.create(
       key,
